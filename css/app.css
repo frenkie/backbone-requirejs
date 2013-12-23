@@ -1,0 +1,15 @@
+/* Color values */
+/* Color types */
+/* Typography */
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box; }
+
+body {
+  background-color: white;
+  color: #333333;
+  font-family: "Helvetica", "Arial", sans-serif; }
+
+.hello-title {
+  color: #333333; }
