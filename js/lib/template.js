@@ -1,7 +1,8 @@
 define(
     [
         'jquery',
-        'vendor/handlebars/handlebars'
+        'handlebars',
+        'jquery.xdomainrequest'
     ],
         
     function ( $, Handlebars ) {

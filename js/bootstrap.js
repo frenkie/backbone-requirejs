@@ -1,25 +1,26 @@
-(function ( rootScope ) {
+requirejs.config({
+    paths : {
+        backbone : 'vendor/js/backbone-min',
+        handlebars : 'vendor/js/handlebars',
+        jquery : 'vendor/js/jquery.min',
+        underscore : 'vendor/js/underscore-min',
+        'jquery.xdomainrequest' : 'vendor/js/jquery.xdomainrequest'
+    },
+    shim : {
+        handlebars : {
+            exports : 'Handlebars'
+        },
+        'jquery.xdomainrequest' : ['jquery']
+    }
+});
 
-    define('jquery', function () {
-        return rootScope.jQuery;
-    });
+require(
+    [
+        'js/controllers/AppController'
+    ],
 
-    requirejs.config({
-        paths : {
-            'backbone' : 'vendor/backbone-amd/backbone',
-            'underscore' : 'vendor/underscore-amd/underscore'
-        }
-    });
+    function ( AppController ) {
 
-    require(
-        [
-            'js/controllers/AppController'
-        ],
-
-        function ( AppController ) {
-
-            var app = new AppController( document.getElementById('app') );
-        }
-    );
-
-}( window ));
+        var app = new AppController( document.getElementById('app') );
+    }
+);
