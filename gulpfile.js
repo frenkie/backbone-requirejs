@@ -6,15 +6,15 @@ var del = require('del'),
     helpers = require('./lib/helpers'),
     plugins = require('gulp-load-plugins')();
 
-var VENDOR_SRC = __dirname +'/bower_components/';
+var VENDOR_SRC = __dirname +'/node_modules/';
 
 
 gulp.task('clean', function ( cb ) {
     del( __dirname +'/vendor', cb );
 });
 
-// install, needs to be called after bower install
-gulp.task('install', ['vendor-scripts', 'vendor-styles', 'sass']);
+// install, needs to be called after npm install
+gulp.task('install', ['vendor', 'sass']);
 
 // sass
 gulp.task('sass', function ( cb ) {
@@ -42,46 +42,34 @@ gulp.task('serve', function ( cb ) {
 
 // vendor
 
+gulp.task('vendor', ['vendor-styles', 'vendor-scripts']);
+
 gulp.task('vendor-styles', ['clean'], function ( cb ) {
 
-    var isReady = {
-        css : false,
-        fonts : false
-    };
+    es.concat(
+        gulp.src([
+                VENDOR_SRC +'bootstrap/dist/css/bootstrap.min.css'
+            ])
+            .pipe( gulp.dest( __dirname +'/vendor/css' ) ),
 
-    var ready = function ( jobDone ) {
+        gulp.src([
+                VENDOR_SRC +'bootstrap/dist/fonts/**/*'
+            ])
+            .pipe( gulp.dest( __dirname +'/vendor/fonts' ) )
 
-        isReady[ jobDone ] = true;
-
-        if ( isReady.css && isReady.fonts ) {
-            cb();
-        }
-    };
-
-    gulp.src([
-        VENDOR_SRC +'bootstrap/dist/css/bootstrap.min.css'
-    ])
-        .pipe( gulp.dest( __dirname +'/vendor/css' ) )
-        .on('end', ready.bind( this, 'css' ) );
-
-    gulp.src([
-        VENDOR_SRC +'bootstrap/dist/fonts/**/*'
-    ])
-        .pipe( gulp.dest( __dirname +'/vendor/fonts' ) )
-        .on('end', ready.bind(this, 'fonts') );
+    ).on('end', cb );
 });
 
 gulp.task('vendor-scripts', ['clean'], function ( cb ) {
 
     gulp.src([
-        VENDOR_SRC +'backbone-amd/backbone-min.js',
-        VENDOR_SRC +'backbone-amd/backbone-min.map',
-        VENDOR_SRC +'handlebars/handlebars.js',
-        VENDOR_SRC +'jquery/jquery.min.js',
-        VENDOR_SRC +'jquery/jquery.min.map',
-        VENDOR_SRC +'jQuery.XDomainRequest/jquery.xdomainrequest.js',
+        VENDOR_SRC +'backbone/backbone-min.js',
+        VENDOR_SRC +'backbone/backbone-min.map',
+        VENDOR_SRC +'handlebars/dist/handlebars.amd.min.js',
+        VENDOR_SRC +'jquery/dist/jquery.min.js',
+        VENDOR_SRC +'jquery/dist/jquery.min.map',
         VENDOR_SRC +'requirejs/require.js',
-        VENDOR_SRC +'underscore-amd/underscore-min.js'
+        VENDOR_SRC +'underscore/underscore-min.js'
     ])
         .pipe( gulp.dest( __dirname +'/vendor/js' ) )
         .on('end', cb);
@@ -99,7 +87,7 @@ gulp.task('watch', function () {
 
     // Watch for changes to our SASS
     gulp.watch( [
-        __dirname + 'css/sass/**/*.scss'
+        __dirname + '/css/sass/**/*.scss'
     ], ['sass'] );
 
     // Watch for changes in our build

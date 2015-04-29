@@ -1,10 +1,8 @@
 .DS_Store
-config.json
 npm-debug.log
 css/*.css
 css/*.map
 .idea/
 .sass-cache/
 node_modules/
-bower_components/
 vendor/

@@ -1,16 +1,14 @@
 requirejs.config({
     paths : {
         backbone : 'vendor/js/backbone-min',
-        handlebars : 'vendor/js/handlebars',
+        handlebars : 'vendor/js/handlebars.amd.min',
         jquery : 'vendor/js/jquery.min',
-        underscore : 'vendor/js/underscore-min',
-        'jquery.xdomainrequest' : 'vendor/js/jquery.xdomainrequest'
+        underscore : 'vendor/js/underscore-min'
     },
     shim : {
-        handlebars : {
-            exports : 'Handlebars'
-        },
-        'jquery.xdomainrequest' : ['jquery']
+        underscore : {
+            exports : '_'
+        }
     }
 });
 

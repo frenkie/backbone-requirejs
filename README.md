@@ -7,16 +7,14 @@ The sample site contains a simple Hello app.
 
 ## install
 
-The app uses [Bower](http://bower.io/) for external dependencies and 
-[Gulp](http://gulpjs.com) for building the project.
+The app uses [Gulp](http://gulpjs.com) for building the project.
 
-You don't need Gulp or Bower per se, but than you'd have to compile 
-SASS on your own and manage the external dependencies otherwise.
+You don't need Gulp per se, but than you'd have to compile 
+SASS on your own and manage the location of external dependencies otherwise.
 
-With Bower and Gulp globally installed you can run `bower install`, 
-`npm install` to install Gulp's dependencies and then do `gulp install`
-which creates the CSS and puts the Bower dependencies in the correct
-folder.
+With Gulp globally installed you can run `npm install` to install 
+Gulp's dependencies and then do `gulp install` which creates the CSS 
+and puts the external front end dependencies in the correct folder.
 
 ## run
 

@@ -1,8 +1,8 @@
 {
   "name": "backbone-require",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "A Backbone, RequireJS and SASS starter template",
-  "devDependencies" : {
+  "devDependencies": {
     "del": "^0.1.1",
     "event-stream": "^3.1.7",
     "express": "^4.8.5",
@@ -15,5 +15,13 @@
     "gulp-rename": "^1.2.0",
     "gulp-ruby-sass": "^0.7.x",
     "gulp-uglify": "^0.3.1"
+  },
+  "dependencies": {
+    "backbone": "^1.1.2",
+    "bootstrap": "^3.3.4",
+    "handlebars": "^3.0.3",
+    "jquery": "^2.1.4",
+    "requirejs": "^2.1.17",
+    "underscore": "^1.8.3"
   }
 }
